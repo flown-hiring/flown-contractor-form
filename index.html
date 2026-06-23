@@ -1,83 +1,373 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    body {background-color: #ece4f6}
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 28.0px 'Helvetica Neue'; color: #140e24; -webkit-text-stroke: #140e24}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #8976a5; -webkit-text-stroke: #8976a5}
-    p.p3 {margin: 0.0px 0.0px 4.0px 0.0px; font: 17.0px 'Helvetica Neue'; color: #140e24; -webkit-text-stroke: #140e24}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #8976a5; -webkit-text-stroke: #8976a5}
-    p.p5 {margin: 0.0px 0.0px 10.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #a38bc6; -webkit-text-stroke: #a38bc6}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #140e24; -webkit-text-stroke: #140e24; min-height: 13.0px}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 26.0px 'Helvetica Neue'; color: #a38bc6; -webkit-text-stroke: #a38bc6; min-height: 30.0px}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 13.0px 'Helvetica Neue'; color: #47385f; -webkit-text-stroke: #47385f}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Helvetica Neue'; color: #a38bc6; -webkit-text-stroke: #a38bc6}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #47385f; -webkit-text-stroke: #47385f}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #140e24; -webkit-text-stroke: #140e24; background-color: #f9f6fc; min-height: 17.0px}
-    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #47385f; -webkit-text-stroke: #47385f; background-color: #ffffff}
-    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #000000; color: rgba(0, 0, 0, 0.25); -webkit-text-stroke: rgba(0, 0, 0, 0.25); background-color: #f9f6fc}
-    p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #140e24; -webkit-text-stroke: #140e24; background-color: #f9f6fc}
-    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #140e24; -webkit-text-stroke: #140e24; background-color: #f9f6fc}
-    p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #140e24; -webkit-text-stroke: #140e24; background-color: #e8dff5; min-height: 15.0px}
-    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px 'Helvetica Neue'; color: #8976a5; -webkit-text-stroke: #8976a5}
-    p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
-    span.s1 {font-kerning: none; background-color: #ffffff}
-    span.s2 {font-kerning: none}
-    span.s3 {font-kerning: none; background-color: #f9f6fc}
-    span.s4 {font: 14.0px 'Helvetica Neue'; font-kerning: none; color: #140e24; -webkit-text-stroke: 0px #140e24}
-    span.s5 {font: 14.0px 'Helvetica Neue'; font-kerning: none}
-    span.s6 {font: 14.0px Times; font-kerning: none}
-    span.s7 {font-kerning: none; background-color: #6715e8}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contractor Information — Flown Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f0eaf8;
+      color: #1a1230;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      border: 0.5px solid #ddd6ee;
+      padding: 2.25rem;
+      width: 100%;
+      max-width: 600px;
+    }
+    .logo {
+      font-size: 30px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      color: #1a1230;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: #9b8bb4;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .form-header {
+      padding-bottom: 1.25rem;
+      border-bottom: 0.5px solid #ede6f7;
+      margin-bottom: 1.75rem;
+    }
+    .form-title { font-size: 17px; font-weight: 500; color: #1a1230; margin: 0 0 4px; }
+    .form-subtitle { font-size: 13px; color: #9b8bb4; }
+    .section { margin-bottom: 1.75rem; }
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #b39fd1;
+      margin-bottom: 10px;
+    }
+    .field-grid { display: grid; gap: 12px; }
+    .field-grid-2 { grid-template-columns: 1fr 1fr; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 13px; color: #5a4a72; font-weight: 400; }
+    .field input, .field select {
+      font-size: 14px;
+      padding: 9px 12px;
+      border: 0.5px solid #ddd6ee;
+      border-radius: 10px;
+      background: #faf8fd;
+      color: #1a1230;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+      font-family: inherit;
+      width: 100%;
+    }
+    .field input:focus, .field select:focus {
+      border-color: #9b6dd6;
+      box-shadow: 0 0 0 3px rgba(155,109,214,0.12);
+    }
+    .field input.error, .field select.error { border-color: #c0507a; }
+    .photo-upload {
+      border: 1px dashed #c8b8e8;
+      border-radius: 14px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      background: #faf8fd;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .photo-upload:hover { background: #f3eefb; }
+    .photo-upload input[type=file] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .photo-preview {
+      width: 80px; height: 80px; border-radius: 50%;
+      object-fit: cover; border: 2px solid #ddd6ee; display: none;
+    }
+    .photo-placeholder {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: #ede6f7;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: #b39fd1;
+    }
+    .photo-text { font-size: 13px; color: #5a4a72; text-align: center; }
+    .photo-hint { font-size: 12px; color: #b39fd1; text-align: center; }
+    .divider { height: 0.5px; background: #ede6f7; margin: 1.5rem 0; }
+    .submit-row { display: flex; justify-content: flex-end; gap: 10px; }
+    .btn-secondary {
+      background: transparent;
+      border: 0.5px solid #c8b8e8;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #9b8bb4;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-secondary:hover { background: #faf8fd; }
+    .btn-primary {
+      background: #7c3aed;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 32px;
+      font-size: 14px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 500;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: #6d28d9; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .banner {
+      display: none;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      margin-bottom: 1rem;
+      align-items: center;
+      gap: 8px;
+    }
+    .banner-success { background: #f0fce8; border: 0.5px solid #b8dda0; color: #3a6e1a; }
+    .banner-error { background: #fceef4; border: 0.5px solid #e8a8c0; color: #8c2a50; }
+    .spinner {
+      width: 13px; height: 13px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    select option { color: #1a1230; }
+    @media (max-width: 520px) {
+      .field-grid-2 { grid-template-columns: 1fr; }
+      .card { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">FLOWN</span></p>
-<p class="p2"><span class="s1">CONTRACTOR ONBOARDING</span></p>
-<p class="p3"><span class="s1">Contractor information</span></p>
-<p class="p4"><span class="s1">Fill in your details below. All fields are required.</span></p>
-<p class="p5"><span class="s1">PROFILE PHOTO</span></p>
-<p class="p6"><span class="s2"></span><br></p>
-<p class="p7"><span class="s2"></span><br></p>
-<p class="p8"><span class="s3">Upload a photo of yourself</span></p>
-<p class="p9"><span class="s3">JPG, PNG or WEBP · max 5MB</span></p>
-<p class="p5"><span class="s1">PERSONAL DETAILS</span></p>
-<p class="p10"><span class="s1">Full name</span></p>
-<p class="p11"><span class="s2"></span><br></p>
-<p class="p10"><span class="s1">Date of birth</span></p>
-<p class="p12"><span class="s2">Country</span></p>
-<p class="p13"><span class="s4"><span class="Apple-converted-space">          </span></span><span class="s2">Select a country</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">PhilippinesIndonesiaMalaysia</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">SingaporeThailandVietnam</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">IndiaPakistanUnited Kingdom</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">United StatesCanadaAustralia</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">United Arab EmiratesSouth Africa</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">NigeriaKenyaOther</span></p>
-<p class="p11"><span class="s2"><span class="Apple-converted-space">        </span></span></p>
-<p class="p5"><span class="s1">CONTACT</span></p>
-<p class="p10"><span class="s1">Contact number</span></p>
-<p class="p11"><span class="s2"></span><br></p>
-<p class="p10"><span class="s1">WhatsApp number</span></p>
-<p class="p11"><span class="s2"></span><br></p>
-<p class="p10"><span class="s1">Work email</span></p>
-<p class="p11"><span class="s2"></span><br></p>
-<p class="p10"><span class="s1">Personal email</span></p>
-<p class="p11"><span class="s2"></span><br></p>
-<p class="p5"><span class="s1">ROLE &amp; ENGAGEMENT</span></p>
-<p class="p12"><span class="s2">Role</span></p>
-<p class="p13"><span class="s4"><span class="Apple-converted-space">          </span></span><span class="s2">Select a role</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">Creative StrategistVideo Editor</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">Graphic DesignerScriptwriter</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">Content ManagerCustomer Support</span></p>
-<p class="p15"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s6">Other</span></p>
-<p class="p11"><span class="s2"><span class="Apple-converted-space">        </span></span></p>
-<p class="p10"><span class="s1">Hire date</span></p>
-<p class="p16"><span class="s2"></span><br></p>
-<p class="p17"><span class="s1">Clear</span></p>
-<p class="p18"><span class="s7">Submit</span></p>
+<div class="card">
+
+  <div class="form-header">
+    <div class="logo">FLOWN</div>
+    <div class="logo-sub">Contractor onboarding</div>
+    <p class="form-title">Contractor information</p>
+    <p class="form-subtitle">Fill in your details below. All fields are required.</p>
+  </div>
+
+  <div class="banner banner-success" id="successBanner">
+    ✓ Submitted successfully — thank you!
+  </div>
+  <div class="banner banner-error" id="errorBanner">
+    ✕ Something went wrong. Please try again.
+  </div>
+
+  <div class="section">
+    <p class="section-label">Profile photo</p>
+    <div class="photo-upload">
+      <input type="file" accept="image/*" id="photoInput" aria-label="Upload photo of self" onchange="handlePhoto(event)" />
+      <img class="photo-preview" id="photoPreview" alt="Photo preview" />
+      <div class="photo-placeholder" id="photoPlaceholder">&#128100;</div>
+      <p class="photo-text" id="photoText">Upload a photo of yourself</p>
+      <p class="photo-hint">JPG, PNG or WEBP · max 5MB</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Personal details</p>
+    <div class="field-grid field-grid-2">
+      <div class="field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" placeholder="Jane Santos" autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="birthDate">Date of birth</label>
+        <input type="date" id="birthDate" />
+      </div>
+      <div class="field" style="grid-column: 1 / -1;">
+        <label for="country">Country</label>
+        <select id="country">
+          <option value="" disabled selected>Select a country</option>
+          <option>Philippines</option>
+          <option>Indonesia</option>
+          <option>Malaysia</option>
+          <option>Singapore</option>
+          <option>Thailand</option>
+          <option>Vietnam</option>
+          <option>India</option>
+          <option>Pakistan</option>
+          <option>United Kingdom</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>Australia</option>
+          <option>United Arab Emirates</option>
+          <option>South Africa</option>
+          <option>Nigeria</option>
+          <option>Kenya</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Contact</p>
+    <div class="field-grid field-grid-2">
+      <div class="field">
+        <label for="contactNumber">Contact number</label>
+        <input type="tel" id="contactNumber" placeholder="+63 917 000 0000" />
+      </div>
+      <div class="field">
+        <label for="whatsappNumber">WhatsApp number</label>
+        <input type="tel" id="whatsappNumber" placeholder="+63 917 000 0000" />
+      </div>
+      <div class="field">
+        <label for="workEmail">Work email</label>
+        <input type="email" id="workEmail" placeholder="jane@flownbeauty.com" />
+      </div>
+      <div class="field">
+        <label for="personalEmail">Personal email</label>
+        <input type="email" id="personalEmail" placeholder="jane@gmail.com" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Role & engagement</p>
+    <div class="field-grid field-grid-2">
+      <div class="field">
+        <label for="role">Role</label>
+        <select id="role">
+          <option value="" disabled selected>Select a role</option>
+          <option>Creative Strategist</option>
+          <option>Video Editor</option>
+          <option>Graphic Designer</option>
+          <option>Scriptwriter</option>
+          <option>Content Manager</option>
+          <option>Customer Support</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="hireDate">Hire date</label>
+        <input type="date" id="hireDate" />
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="submit-row">
+    <button class="btn-secondary" onclick="resetForm()">Clear</button>
+    <button class="btn-primary" id="submitBtn" onclick="submitForm()">
+      <span id="submitLabel">Submit</span>
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby8TEsWe12lfTdvJpZPJYfEFNeBgygfL4ttr8mRt4z1VaMU_jjFxJ6T9KxRahyiyRan/exec";
+  let photoData = null;
+
+  function handlePhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) { alert("Photo must be under 5MB."); return; }
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      photoData = { base64: ev.target.result, filename: file.name };
+      document.getElementById('photoPreview').src = ev.target.result;
+      document.getElementById('photoPreview').style.display = 'block';
+      document.getElementById('photoPlaceholder').style.display = 'none';
+      document.getElementById('photoText').textContent = file.name;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function resetForm() {
+    ['fullName','birthDate','contactNumber','whatsappNumber','workEmail','personalEmail','hireDate'].forEach(id => {
+      const el = document.getElementById(id); el.value = ''; el.classList.remove('error');
+    });
+    document.getElementById('role').value = '';
+    document.getElementById('country').value = '';
+    document.getElementById('photoInput').value = '';
+    document.getElementById('photoPreview').style.display = 'none';
+    document.getElementById('photoPreview').src = '';
+    document.getElementById('photoPlaceholder').style.display = 'flex';
+    document.getElementById('photoText').textContent = 'Upload a photo of yourself';
+    document.getElementById('successBanner').style.display = 'none';
+    document.getElementById('errorBanner').style.display = 'none';
+    photoData = null;
+  }
+
+  async function submitForm() {
+    const fields = ['fullName','birthDate','country','contactNumber','whatsappNumber','workEmail','personalEmail','role','hireDate'];
+    let valid = true;
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+      else el.classList.remove('error');
+    });
+    if (!valid) return;
+
+    const btn = document.getElementById('submitBtn');
+    const label = document.getElementById('submitLabel');
+    btn.disabled = true;
+    label.innerHTML = '<span class="spinner"></span> Submitting…';
+
+    const payload = {
+      fullName: document.getElementById('fullName').value.trim(),
+      birthDate: document.getElementById('birthDate').value,
+      country: document.getElementById('country').value,
+      contactNumber: document.getElementById('contactNumber').value.trim(),
+      whatsappNumber: document.getElementById('whatsappNumber').value.trim(),
+      workEmail: document.getElementById('workEmail').value.trim(),
+      personalEmail: document.getElementById('personalEmail').value.trim(),
+      role: document.getElementById('role').value,
+      hireDate: document.getElementById('hireDate').value,
+      photo: photoData
+    };
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      document.getElementById('successBanner').style.display = 'flex';
+      document.getElementById('errorBanner').style.display = 'none';
+      resetForm();
+    } catch(err) {
+      document.getElementById('errorBanner').style.display = 'flex';
+      document.getElementById('successBanner').style.display = 'none';
+    }
+    btn.disabled = false;
+    label.textContent = 'Submit';
+  }
+</script>
 </body>
 </html>
