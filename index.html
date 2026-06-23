@@ -1,372 +1,2114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contractor Information — Flown Beauty</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f0eaf8;
-      color: #1a1230;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 2.5rem 1rem;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Creative Team Performance Evaluation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141416;
+    --surface2: #1c1c20;
+    --border: #2a2a30;
+    --accent: #e8c877;
+    --accent2: #c45c3a;
+    --text: #f0ede8;
+    --muted: #7a7880;
+    --success: #4caf7d;
+    --warn: #e89c44;
+    --danger: #e05454;
+    --script: #7eb8e8;
+    --graphic: #b07ee8;
+    --video: #e87e9c;
+    --strategist: #7ee8c4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11px; }
+    .sheet { box-shadow: none !important; border: 1px solid #ccc !important; }
+    :root {
+      --bg: #fff; --surface: #f9f9f9; --surface2: #f0f0f0;
+      --border: #ccc; --text: #111; --muted: #555;
+      --accent: #b89030; --accent2: #c45c3a;
     }
-    .card {
-      background: #fff;
-      border-radius: 20px;
-      border: 0.5px solid #ddd6ee;
-      padding: 2.25rem;
-      width: 100%;
-      max-width: 600px;
-    }
-    .logo {
-      font-size: 30px;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      color: #1a1230;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-    .logo-sub {
-      font-size: 11px;
-      color: #9b8bb4;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-    .form-header {
-      padding-bottom: 1.25rem;
-      border-bottom: 0.5px solid #ede6f7;
-      margin-bottom: 1.75rem;
-    }
-    .form-title { font-size: 17px; font-weight: 500; color: #1a1230; margin: 0 0 4px; }
-    .form-subtitle { font-size: 13px; color: #9b8bb4; }
-    .section { margin-bottom: 1.75rem; }
-    .section-label {
-      font-size: 10px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: #b39fd1;
-      margin-bottom: 10px;
-    }
-    .field-grid { display: grid; gap: 12px; }
-    .field-grid-2 { grid-template-columns: 1fr 1fr; }
-    .field { display: flex; flex-direction: column; gap: 5px; }
-    .field label { font-size: 13px; color: #5a4a72; font-weight: 400; }
-    .field input, .field select {
-      font-size: 14px;
-      padding: 9px 12px;
-      border: 0.5px solid #ddd6ee;
-      border-radius: 10px;
-      background: #faf8fd;
-      color: #1a1230;
-      outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      appearance: none;
-      -webkit-appearance: none;
-      font-family: inherit;
-      width: 100%;
-    }
-    .field input:focus, .field select:focus {
-      border-color: #9b6dd6;
-      box-shadow: 0 0 0 3px rgba(155,109,214,0.12);
-    }
-    .field input.error, .field select.error { border-color: #c0507a; }
-    .photo-upload {
-      border: 1px dashed #c8b8e8;
-      border-radius: 14px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      background: #faf8fd;
-      transition: background 0.15s;
-      position: relative;
-    }
-    .photo-upload:hover { background: #f3eefb; }
-    .photo-upload input[type=file] {
-      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-    }
-    .photo-preview {
-      width: 80px; height: 80px; border-radius: 50%;
-      object-fit: cover; border: 2px solid #ddd6ee; display: none;
-    }
-    .photo-placeholder {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: #ede6f7;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px; color: #b39fd1;
-    }
-    .photo-text { font-size: 13px; color: #5a4a72; text-align: center; }
-    .photo-hint { font-size: 12px; color: #b39fd1; text-align: center; }
-    .divider { height: 0.5px; background: #ede6f7; margin: 1.5rem 0; }
-    .submit-row { display: flex; justify-content: flex-end; gap: 10px; }
-    .btn-secondary {
-      background: transparent;
-      border: 0.5px solid #c8b8e8;
-      border-radius: 10px;
-      padding: 10px 20px;
-      font-size: 14px;
-      color: #9b8bb4;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .btn-secondary:hover { background: #faf8fd; }
-    .btn-primary {
-      background: #7c3aed;
-      border: none;
-      border-radius: 30px;
-      padding: 10px 32px;
-      font-size: 14px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 500;
-      font-family: inherit;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      letter-spacing: 0.01em;
-    }
-    .btn-primary:hover { background: #6d28d9; }
-    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-    .banner {
-      display: none;
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 13px;
-      margin-bottom: 1rem;
-      align-items: center;
-      gap: 8px;
-    }
-    .banner-success { background: #f0fce8; border: 0.5px solid #b8dda0; color: #3a6e1a; }
-    .banner-error { background: #fceef4; border: 0.5px solid #e8a8c0; color: #8c2a50; }
-    .spinner {
-      width: 13px; height: 13px;
-      border: 2px solid rgba(255,255,255,0.4);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      display: inline-block;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    select option { color: #1a1230; }
-    @media (max-width: 520px) {
-      .field-grid-2 { grid-template-columns: 1fr; }
-      .card { padding: 1.5rem; }
-    }
-  </style>
+  }
+
+  /* ---- HEADER ---- */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .brand span { color: var(--accent); }
+  .header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ---- ROLE TABS ---- */
+  .role-nav {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .role-tab {
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .role-tab:hover { color: var(--text); }
+  .role-tab.active[data-role="script"]     { color: var(--script);     border-bottom-color: var(--script); }
+  .role-tab.active[data-role="graphic"]    { color: var(--graphic);    border-bottom-color: var(--graphic); }
+  .role-tab.active[data-role="video"]      { color: var(--video);      border-bottom-color: var(--video); }
+  .role-tab.active[data-role="strategist"] { color: var(--strategist); border-bottom-color: var(--strategist); }
+
+  /* ---- MAIN ---- */
+  .main { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ---- SHEET ---- */
+  .sheet {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .sheet-header {
+    padding: 28px 36px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .sheet-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .sheet-title .part-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .role-badge {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-script     { background: rgba(126,184,232,0.12); color: var(--script);     border: 1px solid rgba(126,184,232,0.3); }
+  .badge-graphic    { background: rgba(176,126,232,0.12); color: var(--graphic);    border: 1px solid rgba(176,126,232,0.3); }
+  .badge-video      { background: rgba(232,126,156,0.12); color: var(--video);      border: 1px solid rgba(232,126,156,0.3); }
+  .badge-strategist { background: rgba(126,232,196,0.12); color: var(--strategist); border: 1px solid rgba(126,232,196,0.3); }
+
+  .sheet-body { padding: 0; }
+
+  /* ---- INFO GRID ---- */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-cell {
+    padding: 20px 28px;
+    border-right: 1px solid var(--border);
+  }
+  .info-cell:last-child { border-right: none; }
+  .info-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .info-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    padding: 4px 0;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .info-input:focus { border-bottom-color: var(--accent); }
+
+  /* ---- TABLES ---- */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    background: var(--surface2);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+    font-size: 13px;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .td-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    width: 100%;
+    padding: 2px 0;
+    outline: none;
+    min-width: 80px;
+    transition: border-color 0.2s;
+  }
+  .td-input:focus { border-bottom-color: var(--accent); }
+  .td-input[readonly] { color: var(--accent); cursor: default; }
+
+  td.number { text-align: center; }
+  td.center  { text-align: center; }
+
+  .score-pill {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+
+  /* ---- FORMULA BOX ---- */
+  .formula-note {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 14px 20px;
+    margin: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  .formula-note .formula-title {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .formula-note code {
+    color: var(--text);
+    background: rgba(255,255,255,0.05);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+
+  /* ---- CRITERIA TABLE ---- */
+  .criteria-row-excellent td { border-left: 3px solid var(--success); }
+  .criteria-row-good      td { border-left: 3px solid var(--accent); }
+  .criteria-row-average   td { border-left: 3px solid var(--warn); }
+  .criteria-row-below     td { border-left: 3px solid var(--danger); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .tag-excellent { background: rgba(76,175,125,0.15); color: var(--success); }
+  .tag-good      { background: rgba(232,200,119,0.15); color: var(--accent); }
+  .tag-average   { background: rgba(232,156,68,0.15);  color: var(--warn); }
+  .tag-below     { background: rgba(224,84,84,0.15);   color: var(--danger); }
+
+  /* ---- SUMMARY BAR ---- */
+  .summary-bar {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .summary-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .summary-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .summary-rating {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .gauge-bars { flex: 1; min-width: 260px; }
+  .gauge-row { margin-bottom: 12px; }
+  .gauge-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .gauge-track {
+    background: var(--border);
+    border-radius: 2px;
+    height: 5px;
+    overflow: hidden;
+  }
+  .gauge-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ---- SECTION SPACER ---- */
+  .section-spacer {
+    padding: 20px 28px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---- PRINT BTN ---- */
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .btn {
+    padding: 11px 24px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .btn-primary:hover { background: #f0d88a; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+  }
+  .btn-ghost:hover { background: var(--surface2); }
+
+  /* ---- ROLE PANELS ---- */
+  .role-panel { display: none; }
+  .role-panel.active { display: block; }
+
+  /* ---- WEIGHT CHIP ---- */
+  .wt {
+    display: inline-block;
+    background: rgba(232,200,119,0.1);
+    border: 1px solid rgba(232,200,119,0.3);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  .eval-period-banner {
+    background: linear-gradient(135deg, rgba(232,200,119,0.06) 0%, rgba(196,92,58,0.06) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  .eval-period-banner strong { color: var(--accent); }
+</style>
 </head>
 <body>
-<div class="card">
 
-  <div class="form-header">
-    <div class="logo">FLOWN</div>
-    <div class="logo-sub">Contractor onboarding</div>
-    <p class="form-title">Contractor information</p>
-    <p class="form-subtitle">Fill in your details below. All fields are required.</p>
+<header class="site-header no-print">
+  <div class="brand">Creative<span>Eval</span></div>
+  <div class="header-meta">Performance Evaluation System &mdash; Creative Team</div>
+</header>
+
+<!-- ROLE NAVIGATION -->
+<nav class="role-nav no-print">
+  <button class="role-tab active" data-role="script"     onclick="switchRole('script')">Script Writer</button>
+  <button class="role-tab"        data-role="graphic"    onclick="switchRole('graphic')">Graphic Designer</button>
+  <button class="role-tab"        data-role="video"      onclick="switchRole('video')">Video Editor</button>
+  <button class="role-tab"        data-role="strategist" onclick="switchRole('strategist')">Creative Strategist</button>
+</nav>
+
+<div class="main">
+
+  <div class="actions no-print">
+    <button class="btn btn-primary" onclick="window.print()">Print / Export PDF</button>
+    <button class="btn btn-ghost"   onclick="resetForm()">Clear Form</button>
   </div>
 
-  <div class="banner banner-success" id="successBanner">
-    ✓ Submitted successfully — thank you!
-  </div>
-  <div class="banner banner-error" id="errorBanner">
-    ✕ Something went wrong. Please try again.
-  </div>
+  <!-- ============================================================
+       SCRIPT WRITER
+  ============================================================ -->
+  <div class="role-panel active" id="panel-script">
 
-  <div class="section">
-    <p class="section-label">Profile photo</p>
-    <div class="photo-upload">
-      <input type="file" accept="image/*" id="photoInput" aria-label="Upload photo of self" onchange="handlePhoto(event)" />
-      <img class="photo-preview" id="photoPreview" alt="Photo preview" />
-      <div class="photo-placeholder" id="photoPlaceholder">&#128100;</div>
-      <p class="photo-text" id="photoText">Upload a photo of yourself</p>
-      <p class="photo-hint">JPG, PNG or WEBP · max 5MB</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <p class="section-label">Personal details</p>
-    <div class="field-grid field-grid-2">
-      <div class="field">
-        <label for="fullName">Full name</label>
-        <input type="text" id="fullName" placeholder="Jane Santos" autocomplete="name" />
+    <!-- PART 0: EMPLOYEE INFO -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Employee Information</span>
+          Performance Evaluation Sheet
+        </div>
+        <span class="role-badge badge-script">Script Writer</span>
       </div>
-      <div class="field">
-        <label for="birthDate">Date of birth</label>
-        <input type="date" id="birthDate" />
-      </div>
-      <div class="field" style="grid-column: 1 / -1;">
-        <label for="country">Country</label>
-        <select id="country">
-          <option value="" disabled selected>Select a country</option>
-          <option>Philippines</option>
-          <option>Indonesia</option>
-          <option>Malaysia</option>
-          <option>Singapore</option>
-          <option>Thailand</option>
-          <option>Vietnam</option>
-          <option>India</option>
-          <option>Pakistan</option>
-          <option>United Kingdom</option>
-          <option>United States</option>
-          <option>Canada</option>
-          <option>Australia</option>
-          <option>United Arab Emirates</option>
-          <option>South Africa</option>
-          <option>Nigeria</option>
-          <option>Kenya</option>
-          <option>Other</option>
-        </select>
+      <div class="sheet-body">
+        <div class="info-grid">
+          <div class="info-cell">
+            <div class="info-label">Employee Name</div>
+            <input class="info-input" type="text" placeholder="Full name" />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Role / Position</div>
+            <input class="info-input" type="text" value="Script Writer" readonly />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Evaluation Period</div>
+            <input class="info-input" type="text" placeholder="e.g. April 2026" />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Evaluator</div>
+            <input class="info-input" type="text" placeholder="Manager / Lead name" />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Date of Evaluation</div>
+            <input class="info-input" type="date" />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <p class="section-label">Contact</p>
-    <div class="field-grid field-grid-2">
-      <div class="field">
-        <label for="contactNumber">Contact number</label>
-        <input type="tel" id="contactNumber" placeholder="+63 917 000 0000" />
+    <!-- PART 1: ASSIGNED TASKS -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 1</span>
+          Assigned Tasks &amp; Projects
+        </div>
       </div>
-      <div class="field">
-        <label for="whatsappNumber">WhatsApp number</label>
-        <input type="tel" id="whatsappNumber" placeholder="+63 917 000 0000" />
-      </div>
-      <div class="field">
-        <label for="workEmail">Work email</label>
-        <input type="email" id="workEmail" placeholder="jane@flownbeauty.com" />
-      </div>
-      <div class="field">
-        <label for="personalEmail">Personal email</label>
-        <input type="email" id="personalEmail" placeholder="jane@gmail.com" />
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:40px">#</th>
+                <th>Task / Project Name</th>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center" style="color:var(--muted)">01</td>
+                <td><input class="td-input" type="text" placeholder="Script title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="Brief description" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td>
+                  <select class="td-input" style="cursor:pointer">
+                    <option value="">-- Select --</option>
+                    <option>Completed</option>
+                    <option>In Progress</option>
+                    <option>Delayed</option>
+                    <option>Not Started</option>
+                  </select>
+                </td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">02</td>
+                <td><input class="td-input" type="text" placeholder="Script title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="Brief description" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td>
+                  <select class="td-input" style="cursor:pointer">
+                    <option value="">-- Select --</option>
+                    <option>Completed</option>
+                    <option>In Progress</option>
+                    <option>Delayed</option>
+                    <option>Not Started</option>
+                  </select>
+                </td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">03</td>
+                <td><input class="td-input" type="text" placeholder="Script title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="Brief description" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td>
+                  <select class="td-input" style="cursor:pointer">
+                    <option value="">-- Select --</option>
+                    <option>Completed</option>
+                    <option>In Progress</option>
+                    <option>Delayed</option>
+                    <option>Not Started</option>
+                  </select>
+                </td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">04</td>
+                <td><input class="td-input" type="text" placeholder="Script title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="Brief description" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td>
+                  <select class="td-input" style="cursor:pointer">
+                    <option value="">-- Select --</option>
+                    <option>Completed</option>
+                    <option>In Progress</option>
+                    <option>Delayed</option>
+                    <option>Not Started</option>
+                  </select>
+                </td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">05</td>
+                <td><input class="td-input" type="text" placeholder="Script title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="Brief description" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td>
+                  <select class="td-input" style="cursor:pointer">
+                    <option value="">-- Select --</option>
+                    <option>Completed</option>
+                    <option>In Progress</option>
+                    <option>Delayed</option>
+                    <option>Not Started</option>
+                  </select>
+                </td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <p class="section-label">Role & engagement</p>
-    <div class="field-grid field-grid-2">
-      <div class="field">
-        <label for="role">Role</label>
-        <select id="role">
-          <option value="" disabled selected>Select a role</option>
-          <option>Creative Strategist</option>
-          <option>Video Editor</option>
-          <option>Graphic Designer</option>
-          <option>Scriptwriter</option>
-          <option>Content Manager</option>
-          <option>Customer Support</option>
-          <option>Other</option>
-        </select>
+    <!-- PART 2: KPIs -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 2</span>
+          Key Performance Indicators (KPIs)
+        </div>
       </div>
-      <div class="field">
-        <label for="hireDate">Hire date</label>
-        <input type="date" id="hireDate" />
+      <div class="sheet-body">
+
+        <div class="section-spacer">Script Output &amp; Volume</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Target</th>
+                <th>Actual</th>
+                <th>Formula</th>
+                <th style="width:120px">Attainment %</th>
+                <th>Weight <span class="wt">25%</span></th>
+                <th style="width:90px">Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Scripts Completed</strong><br/><small style="color:var(--muted)">Total scripts submitted per month</small></td>
+                <td><input class="td-input sw-target-1" type="number" placeholder="e.g. 16" oninput="calcScript()" /></td>
+                <td><input class="td-input sw-actual-1" type="number" placeholder="Actual count" oninput="calcScript()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill sw-att-1">--</span></td>
+                <td class="center">25%</td>
+                <td class="center"><span class="score-pill sw-ws-1">--</span></td>
+              </tr>
+              <tr>
+                <td><strong>On-Time Submission Rate</strong><br/><small style="color:var(--muted)">Scripts submitted before deadline</small></td>
+                <td><input class="td-input sw-target-2" type="number" placeholder="e.g. 100" oninput="calcScript()" /></td>
+                <td><input class="td-input sw-actual-2" type="number" placeholder="% on time" oninput="calcScript()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Scripts on-time / Total scripts) x 100</td>
+                <td class="center"><span class="score-pill sw-att-2">--</span></td>
+                <td class="center">25%</td>
+                <td class="center"><span class="score-pill sw-ws-2">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Concept Ideation</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Target</th>
+                <th>Actual</th>
+                <th>Formula</th>
+                <th style="width:120px">Attainment %</th>
+                <th>Weight <span class="wt">25%</span></th>
+                <th style="width:90px">Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original Concept Ideas</strong><br/><small style="color:var(--muted)">New angles, hooks, or script formats proposed per month</small></td>
+                <td><input class="td-input sw-target-3" type="number" placeholder="e.g. 4" oninput="calcScript()" /></td>
+                <td><input class="td-input sw-actual-3" type="number" placeholder="Actual" oninput="calcScript()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill sw-att-3">--</span></td>
+                <td class="center">25%</td>
+                <td class="center"><span class="score-pill sw-ws-3">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Script Quality &amp; Effectiveness</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Target Score</th>
+                <th>Actual Score</th>
+                <th>Formula</th>
+                <th style="width:120px">Attainment %</th>
+                <th>Weight <span class="wt">25%</span></th>
+                <th style="width:90px">Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Script Quality Score</strong><br/><small style="color:var(--muted)">Clarity, hook strength, structure, brand-alignment (1-10 rubric)</small></td>
+                <td><input class="td-input sw-target-4" type="number" placeholder="10" oninput="calcScript()" /></td>
+                <td><input class="td-input sw-actual-4" type="number" placeholder="Score 1-10" oninput="calcScript()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Score / 10) x 100</td>
+                <td class="center"><span class="score-pill sw-att-4">--</span></td>
+                <td class="center">25%</td>
+                <td class="center"><span class="score-pill sw-ws-4">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="formula-note">
+          <div class="formula-title">Scoring Formulas</div>
+          KPI Attainment % = <code>(Actual / Target) x 100</code> &nbsp;|&nbsp;
+          Weighted Score = <code>(Attainment % x Weight) / 100</code> &nbsp;|&nbsp;
+          Final KPI Score = <code>SUM of all Weighted Scores</code> (max 25 pts per KPI group)
+        </div>
+
+        <div style="padding: 20px 28px; text-align: right;">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-right:16px">TOTAL KPI SCORE (out of 100)</span>
+          <span class="score-pill" id="sw-total" style="font-size:15px;padding:6px 20px;color:var(--accent)">--</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="divider"></div>
+    <!-- PART 3: QUALITATIVE -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 3</span>
+          Qualitative &amp; Behavioral Assessment
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Competency</th>
+                <th>Description</th>
+                <th>Rating (1-5)</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Research Depth</strong></td>
+                <td style="color:var(--muted)">Quality of research supporting scripts; use of data and audience insight</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td><strong>Creativity &amp; Originality</strong></td>
+                <td style="color:var(--muted)">Fresh hooks, unique angles, avoiding formulaic writing</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td><strong>Revision Responsiveness</strong></td>
+                <td style="color:var(--muted)">Responsiveness to feedback; quality of revisions</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td><strong>Collaboration</strong></td>
+                <td style="color:var(--muted)">Works well with editors, designers, and strategists</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td><strong>Initiative</strong></td>
+                <td style="color:var(--muted)">Proactively pitches ideas without being asked</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-  <div class="submit-row">
-    <button class="btn-secondary" onclick="resetForm()">Clear</button>
-    <button class="btn-primary" id="submitBtn" onclick="submitForm()">
-      <span id="submitLabel">Submit</span>
-    </button>
-  </div>
+    <!-- PART 4: CRITERIA -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 4</span>
+          Evaluation Criteria &amp; Rating Scale
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>Score Range</th>
+                <th>Description</th>
+                <th>Action Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="criteria-row-excellent">
+                <td><span class="tag tag-excellent">Excellent</span></td>
+                <td style="font-family:'DM Mono',monospace">90 - 100</td>
+                <td>Consistently exceeds targets. Scripts are high-quality, on-time, and show strong concept thinking.</td>
+                <td>Recognize; consider for growth opportunities or senior responsibilities.</td>
+              </tr>
+              <tr class="criteria-row-good">
+                <td><span class="tag tag-good">Good</span></td>
+                <td style="font-family:'DM Mono',monospace">75 - 89</td>
+                <td>Meets most targets. Reliable output with occasional standout work. Minor gaps in ideation or quality.</td>
+                <td>Positive reinforcement; set stretch goals for next period.</td>
+              </tr>
+              <tr class="criteria-row-average">
+                <td><span class="tag tag-average">Needs Improvement</span></td>
+                <td style="font-family:'DM Mono',monospace">60 - 74</td>
+                <td>Partially meets targets. Volume or quality inconsistent. Concept ideation below expectation.</td>
+                <td>Coaching plan; biweekly check-ins; set clearer deliverables.</td>
+              </tr>
+              <tr class="criteria-row-below">
+                <td><span class="tag tag-below">Below Standard</span></td>
+                <td style="font-family:'DM Mono',monospace">Below 60</td>
+                <td>Consistently misses targets. Significant quality or volume issues. Requires immediate intervention.</td>
+                <td>Performance improvement plan (PIP); weekly monitoring.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <!-- PART 5: SUMMARY -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 5</span>
+          Summary &amp; Final Evaluation
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div style="padding:28px 36px; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+          <div>
+            <div class="info-label">Key Strengths</div>
+            <textarea class="td-input" rows="4" placeholder="Summarize top 3 strengths..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+          <div>
+            <div class="info-label">Areas for Development</div>
+            <textarea class="td-input" rows="4" placeholder="List 2-3 areas to improve..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+          <div>
+            <div class="info-label">Goals for Next Period</div>
+            <textarea class="td-input" rows="4" placeholder="SMART goals for the next evaluation cycle..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+          <div>
+            <div class="info-label">Evaluator&apos;s Overall Comment</div>
+            <textarea class="td-input" rows="4" placeholder="General remarks..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+        </div>
+        <hr class="divider" />
+        <div style="padding:28px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+          <div>
+            <div class="info-label">Employee Signature &amp; Date</div>
+            <input class="info-input" type="text" placeholder="________________________" />
+          </div>
+          <div>
+            <div class="info-label">Evaluator Signature &amp; Date</div>
+            <input class="info-input" type="text" placeholder="________________________" />
+          </div>
+          <div>
+            <div class="info-label">HR / Management Approval</div>
+            <input class="info-input" type="text" placeholder="________________________" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-script -->
+
+
+  <!-- ============================================================
+       GRAPHIC DESIGNER
+  ============================================================ -->
+  <div class="role-panel" id="panel-graphic">
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Employee Information</span>
+          Performance Evaluation Sheet
+        </div>
+        <span class="role-badge badge-graphic">Graphic Designer</span>
+      </div>
+      <div class="sheet-body">
+        <div class="info-grid">
+          <div class="info-cell">
+            <div class="info-label">Employee Name</div>
+            <input class="info-input" type="text" placeholder="Full name" />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Role / Position</div>
+            <input class="info-input" type="text" value="Graphic Designer" readonly />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Evaluation Period</div>
+            <input class="info-input" type="text" placeholder="e.g. April 2026" />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Evaluator</div>
+            <input class="info-input" type="text" placeholder="Manager / Lead name" />
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Date of Evaluation</div>
+            <input class="info-input" type="date" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 1</span>
+          Assigned Tasks &amp; Projects
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Task / Campaign</th>
+                <th>Type (Static / Motion / etc.)</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center" style="color:var(--muted)">01</td>
+                <td><input class="td-input" type="text" placeholder="Campaign name" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Static Ad, Banner" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">02</td>
+                <td><input class="td-input" type="text" placeholder="Campaign name" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Static Ad, Banner" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">03</td>
+                <td><input class="td-input" type="text" placeholder="Campaign name" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Static Ad, Banner" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">04</td>
+                <td><input class="td-input" type="text" placeholder="Campaign name" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Static Ad, Banner" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">05</td>
+                <td><input class="td-input" type="text" placeholder="Campaign name" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Static Ad, Banner" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 2</span>
+          Key Performance Indicators (KPIs)
+        </div>
+      </div>
+      <div class="sheet-body">
+
+        <div class="section-spacer">Volume &mdash; Static Ads Output (Target: at least 6/week | ~24/month)</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Weekly Target</th>
+                <th>Monthly Target</th>
+                <th>Actual (Month)</th>
+                <th>Formula</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">30%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Static Ads Completed</strong><br/><small style="color:var(--muted)">Finished static ad creatives submitted</small></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--accent)">6</td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--accent)">24</td>
+                <td><input class="td-input gd-actual-1" type="number" placeholder="e.g. 22" oninput="calcGraphic()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / 24) x 100</td>
+                <td class="center"><span class="score-pill gd-att-1">--</span></td>
+                <td class="center">30%</td>
+                <td class="center"><span class="score-pill gd-ws-1">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Concept Ideas &mdash; Target: 4/week | 12/month</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Weekly Target</th>
+                <th>Monthly Target</th>
+                <th>Actual (Month)</th>
+                <th>Formula</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">30%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Concept Ideas Submitted</strong><br/><small style="color:var(--muted)">New creative concepts, visual directions, or ad ideas pitched</small></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--accent)">4</td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--accent)">12</td>
+                <td><input class="td-input gd-actual-2" type="number" placeholder="e.g. 10" oninput="calcGraphic()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / 12) x 100</td>
+                <td class="center"><span class="score-pill gd-att-2">--</span></td>
+                <td class="center">30%</td>
+                <td class="center"><span class="score-pill gd-ws-2">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Hit Rate &mdash; Winning Creatives</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Total Ads Live</th>
+                <th>Winning Ads</th>
+                <th>Formula</th>
+                <th>Hit Rate %</th>
+                <th>Target Hit Rate</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">40%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Creative Hit Rate</strong><br/><small style="color:var(--muted)">% of ads that hit performance benchmarks</small></td>
+                <td><input class="td-input gd-live-3" type="number" placeholder="e.g. 20" oninput="calcGraphic()" /></td>
+                <td><input class="td-input gd-win-3" type="number" placeholder="e.g. 6" oninput="calcGraphic()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Winning / Total) x 100</td>
+                <td class="center"><span class="score-pill gd-hitrate">--</span></td>
+                <td><input class="td-input gd-target-3" type="number" placeholder="e.g. 30" oninput="calcGraphic()" /></td>
+                <td class="center"><span class="score-pill gd-att-3">--</span></td>
+                <td class="center">40%</td>
+                <td class="center"><span class="score-pill gd-ws-3">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="formula-note">
+          <div class="formula-title">Scoring Formulas</div>
+          Volume Attainment = <code>(Actual / 24) x 100</code> &nbsp;|&nbsp;
+          Concept Attainment = <code>(Actual / 12) x 100</code> &nbsp;|&nbsp;
+          Hit Rate = <code>(Winning Ads / Total Ads Live) x 100</code> &nbsp;|&nbsp;
+          Hit Rate Attainment = <code>(Actual Hit Rate / Target Hit Rate) x 100</code> &nbsp;|&nbsp;
+          Weighted Score = <code>(Attainment % x Weight) / 100</code> &nbsp;|&nbsp;
+          Final Score = <code>WS1 + WS2 + WS3</code>
+        </div>
+
+        <div style="padding:20px 28px;text-align:right">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-right:16px">TOTAL KPI SCORE (out of 100)</span>
+          <span class="score-pill" id="gd-total" style="font-size:15px;padding:6px 20px;color:var(--accent)">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEKLY TRACKER -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Part 2B</span>
+          Weekly Output Tracker
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Dates</th>
+                <th>Static Ads Target</th>
+                <th>Static Ads Actual</th>
+                <th>Concepts Target</th>
+                <th>Concepts Actual</th>
+                <th>Hit Rate (if known)</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--accent)">Week 1</td>
+                <td><input class="td-input" type="text" placeholder="Apr 1-7" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">6</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">4</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="text" placeholder="%" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--accent)">Week 2</td>
+                <td><input class="td-input" type="text" placeholder="Apr 8-14" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">6</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">4</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="text" placeholder="%" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--accent)">Week 3</td>
+                <td><input class="td-input" type="text" placeholder="Apr 15-21" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">6</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">4</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="text" placeholder="%" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--accent)">Week 4</td>
+                <td><input class="td-input" type="text" placeholder="Apr 22-30" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">6</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">4</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="text" placeholder="%" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 3</span>Evaluation Criteria</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>Score Range</th>
+                <th>Volume (Static Ads)</th>
+                <th>Concept Ideas</th>
+                <th>Hit Rate</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="criteria-row-excellent">
+                <td><span class="tag tag-excellent">Excellent</span></td>
+                <td style="font-family:'DM Mono',monospace">90-100</td>
+                <td>&gt;= 28/month</td>
+                <td>&gt;= 14/month</td>
+                <td>&gt;= 35%</td>
+                <td>Recognize; consider senior or lead role tracks.</td>
+              </tr>
+              <tr class="criteria-row-good">
+                <td><span class="tag tag-good">Good</span></td>
+                <td style="font-family:'DM Mono',monospace">75-89</td>
+                <td>22-27/month</td>
+                <td>11-13/month</td>
+                <td>25-34%</td>
+                <td>Positive reinforcement; set stretch goals.</td>
+              </tr>
+              <tr class="criteria-row-average">
+                <td><span class="tag tag-average">Needs Improvement</span></td>
+                <td style="font-family:'DM Mono',monospace">60-74</td>
+                <td>18-21/month</td>
+                <td>8-10/month</td>
+                <td>15-24%</td>
+                <td>Coaching plan; biweekly check-ins.</td>
+              </tr>
+              <tr class="criteria-row-below">
+                <td><span class="tag tag-below">Below Standard</span></td>
+                <td style="font-family:'DM Mono',monospace">Below 60</td>
+                <td>&lt; 18/month</td>
+                <td>&lt; 8/month</td>
+                <td>&lt; 15%</td>
+                <td>Performance Improvement Plan (PIP).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 4</span>Summary &amp; Final Evaluation</div>
+      </div>
+      <div class="sheet-body">
+        <div style="padding:28px 36px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div class="info-label">Key Strengths</div>
+            <textarea class="td-input" rows="4" placeholder="Top 3 strengths..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+          <div>
+            <div class="info-label">Areas for Development</div>
+            <textarea class="td-input" rows="4" placeholder="2-3 areas to improve..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+          <div>
+            <div class="info-label">Goals for Next Period</div>
+            <textarea class="td-input" rows="4" placeholder="SMART goals..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+          <div>
+            <div class="info-label">Evaluator Comment</div>
+            <textarea class="td-input" rows="4" placeholder="General remarks..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div style="padding:28px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <div><div class="info-label">Employee Signature &amp; Date</div><input class="info-input" type="text" placeholder="________________________"/></div>
+          <div><div class="info-label">Evaluator Signature &amp; Date</div><input class="info-input" type="text" placeholder="________________________"/></div>
+          <div><div class="info-label">HR / Management Approval</div><input class="info-input" type="text" placeholder="________________________"/></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-graphic -->
+
+
+  <!-- ============================================================
+       VIDEO EDITOR
+  ============================================================ -->
+  <div class="role-panel" id="panel-video">
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Employee Information</span>
+          Performance Evaluation Sheet
+        </div>
+        <span class="role-badge badge-video">Video Editor</span>
+      </div>
+      <div class="sheet-body">
+        <div class="info-grid">
+          <div class="info-cell"><div class="info-label">Employee Name</div><input class="info-input" type="text" placeholder="Full name" /></div>
+          <div class="info-cell"><div class="info-label">Role / Position</div><input class="info-input" type="text" value="Video Editor" readonly /></div>
+          <div class="info-cell"><div class="info-label">Evaluation Period</div><input class="info-input" type="text" placeholder="e.g. April 2026" /></div>
+          <div class="info-cell"><div class="info-label">Evaluator</div><input class="info-input" type="text" placeholder="Manager / Lead name" /></div>
+          <div class="info-cell"><div class="info-label">Date of Evaluation</div><input class="info-input" type="date" /></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 1</span>Assigned Tasks &amp; Projects</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Video / Campaign</th>
+                <th>Platform / Format</th>
+                <th>Duration</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center" style="color:var(--muted)">01</td>
+                <td><input class="td-input" type="text" placeholder="Video title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. TikTok 15s, FB Reel" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. 0:30" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">02</td>
+                <td><input class="td-input" type="text" placeholder="Video title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. TikTok 15s, FB Reel" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. 0:30" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">03</td>
+                <td><input class="td-input" type="text" placeholder="Video title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. TikTok 15s, FB Reel" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. 0:30" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">04</td>
+                <td><input class="td-input" type="text" placeholder="Video title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. TikTok 15s, FB Reel" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. 0:30" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">05</td>
+                <td><input class="td-input" type="text" placeholder="Video title or campaign" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. TikTok 15s, FB Reel" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. 0:30" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 2</span>Key Performance Indicators (KPIs)</div>
+      </div>
+      <div class="sheet-body">
+
+        <div class="section-spacer">Volume &mdash; Videos Completed</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Target</th>
+                <th>Actual</th>
+                <th>Formula</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">35%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Videos Completed</strong><br/><small style="color:var(--muted)">Final, approved video deliverables per month</small></td>
+                <td><input class="td-input ve-target-1" type="number" placeholder="e.g. 16" oninput="calcVideo()" /></td>
+                <td><input class="td-input ve-actual-1" type="number" placeholder="Actual count" oninput="calcVideo()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill ve-att-1">--</span></td>
+                <td class="center">35%</td>
+                <td class="center"><span class="score-pill ve-ws-1">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Hit Rate &mdash; Winning Videos</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Total Videos Live</th>
+                <th>Winning Videos</th>
+                <th>Formula</th>
+                <th>Hit Rate %</th>
+                <th>Target Hit Rate %</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">40%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Creative Hit Rate</strong><br/><small style="color:var(--muted)">% of videos meeting performance benchmarks (ROAS, CTR, etc.)</small></td>
+                <td><input class="td-input ve-live-2" type="number" placeholder="e.g. 14" oninput="calcVideo()" /></td>
+                <td><input class="td-input ve-win-2" type="number" placeholder="e.g. 4" oninput="calcVideo()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Winning / Total) x 100</td>
+                <td class="center"><span class="score-pill ve-hitrate">--</span></td>
+                <td><input class="td-input ve-target-2" type="number" placeholder="e.g. 30" oninput="calcVideo()" /></td>
+                <td class="center"><span class="score-pill ve-att-2">--</span></td>
+                <td class="center">40%</td>
+                <td class="center"><span class="score-pill ve-ws-2">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Concept Ideas &mdash; Target: 1/week | 4/month</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Weekly Target</th>
+                <th>Monthly Target</th>
+                <th>Actual (Month)</th>
+                <th>Formula</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">25%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Concept Ideas Submitted</strong><br/><small style="color:var(--muted)">New edit styles, visual treatments, or creative directions pitched</small></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--accent)">1</td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--accent)">4</td>
+                <td><input class="td-input ve-actual-3" type="number" placeholder="e.g. 3" oninput="calcVideo()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / 4) x 100</td>
+                <td class="center"><span class="score-pill ve-att-3">--</span></td>
+                <td class="center">25%</td>
+                <td class="center"><span class="score-pill ve-ws-3">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="formula-note">
+          <div class="formula-title">Scoring Formulas</div>
+          Volume Attainment = <code>(Actual / Target) x 100</code> &nbsp;|&nbsp;
+          Hit Rate = <code>(Winning Videos / Total Videos Live) x 100</code> &nbsp;|&nbsp;
+          Hit Rate Attainment = <code>(Actual Hit Rate % / Target Hit Rate %) x 100</code> &nbsp;|&nbsp;
+          Concept Attainment = <code>(Actual / 4) x 100</code> &nbsp;|&nbsp;
+          Final Score = <code>(WS1 x 0.35) + (WS2 x 0.40) + (WS3 x 0.25)</code>
+        </div>
+
+        <div style="padding:20px 28px;text-align:right">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-right:16px">TOTAL KPI SCORE (out of 100)</span>
+          <span class="score-pill" id="ve-total" style="font-size:15px;padding:6px 20px;color:var(--accent)">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEKLY TRACKER -->
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 2B</span>Weekly Output Tracker</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Dates</th>
+                <th>Videos Target</th>
+                <th>Videos Actual</th>
+                <th>Concept Ideas Target</th>
+                <th>Concept Ideas Actual</th>
+                <th>Winning Videos</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--video)">Week 1</td>
+                <td><input class="td-input" type="text" placeholder="Apr 1-7" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">--</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">1</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="number" placeholder="Count" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--video)">Week 2</td>
+                <td><input class="td-input" type="text" placeholder="Apr 8-14" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">--</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">1</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="number" placeholder="Count" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--video)">Week 3</td>
+                <td><input class="td-input" type="text" placeholder="Apr 15-21" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">--</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">1</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="number" placeholder="Count" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;color:var(--video)">Week 4</td>
+                <td><input class="td-input" type="text" placeholder="Apr 22-30" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">--</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td class="center" style="font-family:'DM Mono',monospace;color:var(--muted)">1</td>
+                <td><input class="td-input" type="number" placeholder="Actual" /></td>
+                <td><input class="td-input" type="number" placeholder="Count" /></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 3</span>Evaluation Criteria</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>Score Range</th>
+                <th>Volume (Videos)</th>
+                <th>Hit Rate</th>
+                <th>Concept Ideas</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="criteria-row-excellent">
+                <td><span class="tag tag-excellent">Excellent</span></td>
+                <td style="font-family:'DM Mono',monospace">90-100</td>
+                <td>Exceeds target &gt;110%</td>
+                <td>&gt;= 35%</td>
+                <td>&gt;= 5/month</td>
+                <td>Recognize; consider mentoring junior editors.</td>
+              </tr>
+              <tr class="criteria-row-good">
+                <td><span class="tag tag-good">Good</span></td>
+                <td style="font-family:'DM Mono',monospace">75-89</td>
+                <td>90-109% of target</td>
+                <td>25-34%</td>
+                <td>4/month</td>
+                <td>Positive reinforcement; set stretch targets.</td>
+              </tr>
+              <tr class="criteria-row-average">
+                <td><span class="tag tag-average">Needs Improvement</span></td>
+                <td style="font-family:'DM Mono',monospace">60-74</td>
+                <td>75-89% of target</td>
+                <td>15-24%</td>
+                <td>2-3/month</td>
+                <td>Coaching plan; biweekly 1-on-1s.</td>
+              </tr>
+              <tr class="criteria-row-below">
+                <td><span class="tag tag-below">Below Standard</span></td>
+                <td style="font-family:'DM Mono',monospace">Below 60</td>
+                <td>&lt; 75% of target</td>
+                <td>&lt; 15%</td>
+                <td>&lt; 2/month</td>
+                <td>Performance Improvement Plan (PIP).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 4</span>Summary &amp; Final Evaluation</div>
+      </div>
+      <div class="sheet-body">
+        <div style="padding:28px 36px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div><div class="info-label">Key Strengths</div><textarea class="td-input" rows="4" placeholder="Top strengths..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+          <div><div class="info-label">Areas for Development</div><textarea class="td-input" rows="4" placeholder="Areas to improve..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+          <div><div class="info-label">Goals for Next Period</div><textarea class="td-input" rows="4" placeholder="SMART goals..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+          <div><div class="info-label">Evaluator Comment</div><textarea class="td-input" rows="4" placeholder="General remarks..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+        </div>
+        <hr class="divider"/>
+        <div style="padding:28px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <div><div class="info-label">Employee Signature &amp; Date</div><input class="info-input" type="text" placeholder="________________________"/></div>
+          <div><div class="info-label">Evaluator Signature &amp; Date</div><input class="info-input" type="text" placeholder="________________________"/></div>
+          <div><div class="info-label">HR / Management Approval</div><input class="info-input" type="text" placeholder="________________________"/></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-video -->
+
+
+  <!-- ============================================================
+       CREATIVE STRATEGIST
+  ============================================================ -->
+  <div class="role-panel" id="panel-strategist">
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title">
+          <span class="part-label">Employee Information</span>
+          Performance Evaluation Sheet
+        </div>
+        <span class="role-badge badge-strategist">Creative Strategist</span>
+      </div>
+      <div class="sheet-body">
+        <div class="info-grid">
+          <div class="info-cell"><div class="info-label">Employee Name</div><input class="info-input" type="text" placeholder="Full name" /></div>
+          <div class="info-cell"><div class="info-label">Role / Position</div><input class="info-input" type="text" value="Creative Strategist" readonly /></div>
+          <div class="info-cell"><div class="info-label">Evaluation Period</div><input class="info-input" type="text" placeholder="e.g. April 2026" /></div>
+          <div class="info-cell"><div class="info-label">Evaluator</div><input class="info-input" type="text" placeholder="Manager / Lead name" /></div>
+          <div class="info-cell"><div class="info-label">Date of Evaluation</div><input class="info-input" type="date" /></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 1</span>Assigned Tasks &amp; Projects</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Project / Campaign</th>
+                <th>Scope</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center" style="color:var(--muted)">01</td>
+                <td><input class="td-input" type="text" placeholder="Campaign or strategy project" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Ad strategy, creative brief" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">02</td>
+                <td><input class="td-input" type="text" placeholder="Campaign or strategy project" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Ad strategy, creative brief" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">03</td>
+                <td><input class="td-input" type="text" placeholder="Campaign or strategy project" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Ad strategy, creative brief" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">04</td>
+                <td><input class="td-input" type="text" placeholder="Campaign or strategy project" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Ad strategy, creative brief" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+              <tr>
+                <td class="center" style="color:var(--muted)">05</td>
+                <td><input class="td-input" type="text" placeholder="Campaign or strategy project" /></td>
+                <td><input class="td-input" type="text" placeholder="e.g. Ad strategy, creative brief" /></td>
+                <td><input class="td-input" type="date" /></td>
+                <td><select class="td-input"><option>-- Select --</option><option>Completed</option><option>In Progress</option><option>Delayed</option></select></td>
+                <td><input class="td-input" type="text" placeholder="Notes" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 2</span>Key Performance Indicators (KPIs)</div>
+      </div>
+      <div class="sheet-body">
+
+        <div class="section-spacer">Creative Output &amp; Strategy Delivery</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Target</th>
+                <th>Actual</th>
+                <th>Formula</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">25%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Creative Briefs Delivered</strong><br/><small style="color:var(--muted)">Fully completed briefs submitted per month</small></td>
+                <td><input class="td-input cs-target-1" type="number" placeholder="e.g. 8" oninput="calcStrategist()" /></td>
+                <td><input class="td-input cs-actual-1" type="number" placeholder="Actual" oninput="calcStrategist()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill cs-att-1">--</span></td>
+                <td class="center">25%</td>
+                <td class="center"><span class="score-pill cs-ws-1">--</span></td>
+              </tr>
+              <tr>
+                <td><strong>Campaigns Strategized</strong><br/><small style="color:var(--muted)">Number of full campaign strategies developed</small></td>
+                <td><input class="td-input cs-target-5" type="number" placeholder="e.g. 4" oninput="calcStrategist()" /></td>
+                <td><input class="td-input cs-actual-5" type="number" placeholder="Actual" oninput="calcStrategist()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill cs-att-5">--</span></td>
+                <td class="center">Qualitative</td>
+                <td class="center" style="color:var(--muted);font-size:11px">Narrative</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Campaign Performance &amp; Hit Rate</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Total Campaigns / Angles Tested</th>
+                <th>Winning Campaigns / Angles</th>
+                <th>Formula</th>
+                <th>Hit Rate %</th>
+                <th>Target Hit Rate</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">35%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Strategic Hit Rate</strong><br/><small style="color:var(--muted)">% of angles/strategies that resulted in winning creatives</small></td>
+                <td><input class="td-input cs-live-2" type="number" placeholder="e.g. 12" oninput="calcStrategist()" /></td>
+                <td><input class="td-input cs-win-2" type="number" placeholder="e.g. 5" oninput="calcStrategist()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Winners / Total) x 100</td>
+                <td class="center"><span class="score-pill cs-hitrate">--</span></td>
+                <td><input class="td-input cs-target-2" type="number" placeholder="e.g. 40" oninput="calcStrategist()" /></td>
+                <td class="center"><span class="score-pill cs-att-2">--</span></td>
+                <td class="center">35%</td>
+                <td class="center"><span class="score-pill cs-ws-2">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-spacer">Ideation &amp; Research</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Target</th>
+                <th>Actual</th>
+                <th>Formula</th>
+                <th>Attainment %</th>
+                <th>Weight <span class="wt">20%</span></th>
+                <th>Weighted Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>New Concept Angles Ideated</strong><br/><small style="color:var(--muted)">Fresh audience angles, hooks, or messaging tested per month</small></td>
+                <td><input class="td-input cs-target-3" type="number" placeholder="e.g. 8" oninput="calcStrategist()" /></td>
+                <td><input class="td-input cs-actual-3" type="number" placeholder="Actual" oninput="calcStrategist()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill cs-att-3">--</span></td>
+                <td class="center">20%</td>
+                <td class="center"><span class="score-pill cs-ws-3">--</span></td>
+              </tr>
+              <tr>
+                <td><strong>Competitor &amp; Trend Research Reports</strong><br/><small style="color:var(--muted)">Research deliverables informing creative strategy</small></td>
+                <td><input class="td-input cs-target-4" type="number" placeholder="e.g. 2" oninput="calcStrategist()" /></td>
+                <td><input class="td-input cs-actual-4" type="number" placeholder="Actual" oninput="calcStrategist()" /></td>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">(Actual / Target) x 100</td>
+                <td class="center"><span class="score-pill cs-att-4">--</span></td>
+                <td class="center">20%</td>
+                <td class="center"><span class="score-pill cs-ws-4">--</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="formula-note">
+          <div class="formula-title">Scoring Formulas</div>
+          KPI Attainment = <code>(Actual / Target) x 100</code> &nbsp;|&nbsp;
+          Hit Rate = <code>(Winning / Total Tested) x 100</code> &nbsp;|&nbsp;
+          Hit Rate Attainment = <code>(Actual HR / Target HR) x 100</code> &nbsp;|&nbsp;
+          Weighted Score = <code>(Attainment % x Weight) / 100</code> &nbsp;|&nbsp;
+          Final Score = <code>SUM of Weighted Scores</code> (Briefs 25% + Hit Rate 35% + Ideation 20% + Research 20%)
+        </div>
+
+        <div style="padding:20px 28px;text-align:right">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-right:16px">TOTAL KPI SCORE (out of 100)</span>
+          <span class="score-pill" id="cs-total" style="font-size:15px;padding:6px 20px;color:var(--accent)">--</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 3</span>Qualitative &amp; Behavioral Assessment</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Competency</th>
+                <th>Description</th>
+                <th>Rating (1-5)</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Strategic Thinking</strong></td>
+                <td style="color:var(--muted)">Connects creative ideas to business goals and audience insights</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px"/></td>
+                <td><input class="td-input" type="text" placeholder="Notes"/></td>
+              </tr>
+              <tr>
+                <td><strong>Data-Driven Decision Making</strong></td>
+                <td style="color:var(--muted)">Uses performance data to inform and adjust strategy</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px"/></td>
+                <td><input class="td-input" type="text" placeholder="Notes"/></td>
+              </tr>
+              <tr>
+                <td><strong>Team Enablement</strong></td>
+                <td style="color:var(--muted)">Quality of briefs and directions given to editors, designers, and writers</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px"/></td>
+                <td><input class="td-input" type="text" placeholder="Notes"/></td>
+              </tr>
+              <tr>
+                <td><strong>Trend Awareness</strong></td>
+                <td style="color:var(--muted)">Proactively identifies cultural and market trends relevant to campaigns</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px"/></td>
+                <td><input class="td-input" type="text" placeholder="Notes"/></td>
+              </tr>
+              <tr>
+                <td><strong>Communication &amp; Leadership</strong></td>
+                <td style="color:var(--muted)">Clear communication of strategy to the creative team</td>
+                <td class="center"><input class="td-input" type="number" min="1" max="5" placeholder="1-5" style="text-align:center;max-width:60px"/></td>
+                <td><input class="td-input" type="text" placeholder="Notes"/></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 4</span>Evaluation Criteria</div>
+      </div>
+      <div class="sheet-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>Score Range</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="criteria-row-excellent">
+                <td><span class="tag tag-excellent">Excellent</span></td>
+                <td style="font-family:'DM Mono',monospace">90-100</td>
+                <td>Strategies consistently yield high hit rates. Ideation and output exceed targets. Clear positive impact on team performance.</td>
+                <td>Recognize; expand responsibilities or ownership of larger accounts.</td>
+              </tr>
+              <tr class="criteria-row-good">
+                <td><span class="tag tag-good">Good</span></td>
+                <td style="font-family:'DM Mono',monospace">75-89</td>
+                <td>Most strategies meet performance targets. Strong ideation with good team enablement.</td>
+                <td>Positive reinforcement; set higher strategic targets.</td>
+              </tr>
+              <tr class="criteria-row-average">
+                <td><span class="tag tag-average">Needs Improvement</span></td>
+                <td style="font-family:'DM Mono',monospace">60-74</td>
+                <td>Some strategies miss performance benchmarks. Ideation or brief quality needs strengthening.</td>
+                <td>Coaching; review of brief quality and strategy frameworks.</td>
+              </tr>
+              <tr class="criteria-row-below">
+                <td><span class="tag tag-below">Below Standard</span></td>
+                <td style="font-family:'DM Mono',monospace">Below 60</td>
+                <td>Consistently low hit rates. Insufficient ideation. Team enabling is weak or absent.</td>
+                <td>Performance Improvement Plan (PIP).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-header">
+        <div class="sheet-title"><span class="part-label">Part 5</span>Summary &amp; Final Evaluation</div>
+      </div>
+      <div class="sheet-body">
+        <div style="padding:28px 36px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div><div class="info-label">Key Strengths</div><textarea class="td-input" rows="4" placeholder="Top strengths..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+          <div><div class="info-label">Areas for Development</div><textarea class="td-input" rows="4" placeholder="Areas to improve..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+          <div><div class="info-label">Goals for Next Period</div><textarea class="td-input" rows="4" placeholder="SMART goals..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+          <div><div class="info-label">Evaluator Comment</div><textarea class="td-input" rows="4" placeholder="General remarks..." style="resize:vertical;padding:8px;border:1px solid var(--border);border-radius:4px;width:100%;font-size:13px;background:var(--surface2)"></textarea></div>
+        </div>
+        <hr class="divider"/>
+        <div style="padding:28px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <div><div class="info-label">Employee Signature &amp; Date</div><input class="info-input" type="text" placeholder="________________________"/></div>
+          <div><div class="info-label">Evaluator Signature &amp; Date</div><input class="info-input" type="text" placeholder="________________________"/></div>
+          <div><div class="info-label">HR / Management Approval</div><input class="info-input" type="text" placeholder="________________________"/></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-strategist -->
+
+</div><!-- /main -->
 
 <script>
-  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby8TEsWe12lfTdvJpZPJYfEFNeBgygfL4ttr8mRt4z1VaMU_jjFxJ6T9KxRahyiyRan/exec";
-  let photoData = null;
+  function switchRole(role) {
+    document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector('.role-tab[data-role="' + role + '"]').classList.add('active');
+    document.getElementById('panel-' + role).classList.add('active');
+  }
 
-  function handlePhoto(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (file.size > 5 * 1024 * 1024) { alert("Photo must be under 5MB."); return; }
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      photoData = { base64: ev.target.result, filename: file.name };
-      document.getElementById('photoPreview').src = ev.target.result;
-      document.getElementById('photoPreview').style.display = 'block';
-      document.getElementById('photoPlaceholder').style.display = 'none';
-      document.getElementById('photoText').textContent = file.name;
-    };
-    reader.readAsDataURL(file);
+  function pct(actual, target) {
+    if (!target || isNaN(actual) || isNaN(target) || target === 0) return null;
+    return Math.min((actual / target) * 100, 150);
+  }
+
+  function fmtPct(v) { return v === null ? '--' : v.toFixed(1) + '%'; }
+  function fmtWS(v)  { return v === null ? '--' : v.toFixed(2); }
+
+  function setPill(sel, val, isScore) {
+    var el = document.querySelector('.' + sel);
+    if (!el) return;
+    el.textContent = isScore ? fmtWS(val) : fmtPct(val);
+    el.style.color = '';
+    if (val === null) { el.style.color = 'var(--muted)'; return; }
+    if (val >= 90)      el.style.color = 'var(--success)';
+    else if (val >= 75) el.style.color = 'var(--accent)';
+    else if (val >= 60) el.style.color = 'var(--warn)';
+    else                el.style.color = 'var(--danger)';
+  }
+
+  function setTotal(id, val) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (val === null || isNaN(val)) { el.textContent = '--'; el.style.color = 'var(--accent)'; return; }
+    var score = Math.min(val, 100);
+    el.textContent = score.toFixed(1) + ' / 100';
+    if (score >= 90)      el.style.color = 'var(--success)';
+    else if (score >= 75) el.style.color = 'var(--accent)';
+    else if (score >= 60) el.style.color = 'var(--warn)';
+    else                  el.style.color = 'var(--danger)';
+  }
+
+  function getVal(cls) {
+    var el = document.querySelector('.' + cls);
+    if (!el) return NaN;
+    return parseFloat(el.value);
+  }
+
+  /* ---- SCRIPT WRITER ---- */
+  function calcScript() {
+    var kpis = [
+      { t: 'sw-target-1', a: 'sw-actual-1', att: 'sw-att-1', ws: 'sw-ws-1', w: 0.25 },
+      { t: 'sw-target-2', a: 'sw-actual-2', att: 'sw-att-2', ws: 'sw-ws-2', w: 0.25 },
+      { t: 'sw-target-3', a: 'sw-actual-3', att: 'sw-att-3', ws: 'sw-ws-3', w: 0.25 },
+      { t: 'sw-target-4', a: 'sw-actual-4', att: 'sw-att-4', ws: 'sw-ws-4', w: 0.25 }
+    ];
+    var total = 0; var allFilled = true;
+    kpis.forEach(function(k) {
+      var t = getVal(k.t), a = getVal(k.a);
+      var att = pct(a, t);
+      setPill(k.att, att, false);
+      var ws = att !== null ? att * k.w : null;
+      if (ws === null) allFilled = false; else total += ws;
+      setPill(k.ws, ws !== null ? ws / 100 * 100 : null, true);
+    });
+    setTotal('sw-total', allFilled ? total : null);
+  }
+
+  /* ---- GRAPHIC DESIGNER ---- */
+  function calcGraphic() {
+    var a1 = getVal('gd-actual-1');
+    var att1 = pct(a1, 24);
+    setPill('gd-att-1', att1, false);
+    var ws1 = att1 !== null ? att1 * 0.30 : null;
+    setPill('gd-ws-1', ws1, true);
+
+    var a2 = getVal('gd-actual-2');
+    var att2 = pct(a2, 12);
+    setPill('gd-att-2', att2, false);
+    var ws2 = att2 !== null ? att2 * 0.30 : null;
+    setPill('gd-ws-2', ws2, true);
+
+    var live = getVal('gd-live-3'), win = getVal('gd-win-3'), tgt3 = getVal('gd-target-3');
+    var hr = (live > 0 && !isNaN(win)) ? (win / live) * 100 : null;
+    setPill('gd-hitrate', hr, false);
+    var att3 = (hr !== null && !isNaN(tgt3)) ? pct(hr, tgt3) : null;
+    setPill('gd-att-3', att3, false);
+    var ws3 = att3 !== null ? att3 * 0.40 : null;
+    setPill('gd-ws-3', ws3, true);
+
+    var allFilled = ws1 !== null && ws2 !== null && ws3 !== null;
+    var total = allFilled ? ws1 + ws2 + ws3 : null;
+    setTotal('gd-total', total);
+  }
+
+  /* ---- VIDEO EDITOR ---- */
+  function calcVideo() {
+    var t1 = getVal('ve-target-1'), a1 = getVal('ve-actual-1');
+    var att1 = pct(a1, t1);
+    setPill('ve-att-1', att1, false);
+    var ws1 = att1 !== null ? att1 * 0.35 : null;
+    setPill('ve-ws-1', ws1, true);
+
+    var live = getVal('ve-live-2'), win = getVal('ve-win-2'), tgt2 = getVal('ve-target-2');
+    var hr = (live > 0 && !isNaN(win)) ? (win / live) * 100 : null;
+    setPill('ve-hitrate', hr, false);
+    var att2 = (hr !== null && !isNaN(tgt2)) ? pct(hr, tgt2) : null;
+    setPill('ve-att-2', att2, false);
+    var ws2 = att2 !== null ? att2 * 0.40 : null;
+    setPill('ve-ws-2', ws2, true);
+
+    var a3 = getVal('ve-actual-3');
+    var att3 = pct(a3, 4);
+    setPill('ve-att-3', att3, false);
+    var ws3 = att3 !== null ? att3 * 0.25 : null;
+    setPill('ve-ws-3', ws3, true);
+
+    var allFilled = ws1 !== null && ws2 !== null && ws3 !== null;
+    var total = allFilled ? ws1 + ws2 + ws3 : null;
+    setTotal('ve-total', total);
+  }
+
+  /* ---- CREATIVE STRATEGIST ---- */
+  function calcStrategist() {
+    var t1 = getVal('cs-target-1'), a1 = getVal('cs-actual-1');
+    var att1 = pct(a1, t1);
+    setPill('cs-att-1', att1, false);
+    var ws1 = att1 !== null ? att1 * 0.25 : null;
+    setPill('cs-ws-1', ws1, true);
+
+    var live = getVal('cs-live-2'), win = getVal('cs-win-2'), tgt2 = getVal('cs-target-2');
+    var hr = (live > 0 && !isNaN(win)) ? (win / live) * 100 : null;
+    setPill('cs-hitrate', hr, false);
+    var att2 = (hr !== null && !isNaN(tgt2)) ? pct(hr, tgt2) : null;
+    setPill('cs-att-2', att2, false);
+    var ws2 = att2 !== null ? att2 * 0.35 : null;
+    setPill('cs-ws-2', ws2, true);
+
+    var t3 = getVal('cs-target-3'), a3 = getVal('cs-actual-3');
+    var att3 = pct(a3, t3);
+    setPill('cs-att-3', att3, false);
+    var ws3 = att3 !== null ? att3 * 0.20 : null;
+    setPill('cs-ws-3', ws3, true);
+
+    var t4 = getVal('cs-target-4'), a4 = getVal('cs-actual-4');
+    var att4 = pct(a4, t4);
+    setPill('cs-att-4', att4, false);
+    var ws4 = att4 !== null ? att4 * 0.20 : null;
+    setPill('cs-ws-4', ws4, true);
+
+    var allFilled = ws1 !== null && ws2 !== null && ws3 !== null && ws4 !== null;
+    var total = allFilled ? ws1 + ws2 + ws3 + ws4 : null;
+    setTotal('cs-total', total);
   }
 
   function resetForm() {
-    ['fullName','birthDate','contactNumber','whatsappNumber','workEmail','personalEmail','hireDate'].forEach(id => {
-      const el = document.getElementById(id); el.value = ''; el.classList.remove('error');
-    });
-    document.getElementById('role').value = '';
-    document.getElementById('country').value = '';
-    document.getElementById('photoInput').value = '';
-    document.getElementById('photoPreview').style.display = 'none';
-    document.getElementById('photoPreview').src = '';
-    document.getElementById('photoPlaceholder').style.display = 'flex';
-    document.getElementById('photoText').textContent = 'Upload a photo of yourself';
-    document.getElementById('successBanner').style.display = 'none';
-    document.getElementById('errorBanner').style.display = 'none';
-    photoData = null;
-  }
-
-  async function submitForm() {
-    const fields = ['fullName','birthDate','country','contactNumber','whatsappNumber','workEmail','personalEmail','role','hireDate'];
-    let valid = true;
-    fields.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
-      else el.classList.remove('error');
-    });
-    if (!valid) return;
-
-    const btn = document.getElementById('submitBtn');
-    const label = document.getElementById('submitLabel');
-    btn.disabled = true;
-    label.innerHTML = '<span class="spinner"></span> Submitting…';
-
-    const payload = {
-      fullName: document.getElementById('fullName').value.trim(),
-      birthDate: document.getElementById('birthDate').value,
-      country: document.getElementById('country').value,
-      contactNumber: document.getElementById('contactNumber').value.trim(),
-      whatsappNumber: document.getElementById('whatsappNumber').value.trim(),
-      workEmail: document.getElementById('workEmail').value.trim(),
-      personalEmail: document.getElementById('personalEmail').value.trim(),
-      role: document.getElementById('role').value,
-      hireDate: document.getElementById('hireDate').value,
-      photo: photoData
-    };
-
-    try {
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      document.getElementById('successBanner').style.display = 'flex';
-      document.getElementById('errorBanner').style.display = 'none';
-      resetForm();
-    } catch(err) {
-      document.getElementById('errorBanner').style.display = 'flex';
-      document.getElementById('successBanner').style.display = 'none';
+    if (confirm('Clear all inputs in the current form?')) {
+      var panel = document.querySelector('.role-panel.active');
+      if (!panel) return;
+      panel.querySelectorAll('input:not([readonly])').forEach(function(i) { i.value = ''; });
+      panel.querySelectorAll('textarea').forEach(function(t) { t.value = ''; });
+      panel.querySelectorAll('select').forEach(function(s) { s.selectedIndex = 0; });
+      panel.querySelectorAll('.score-pill').forEach(function(p) { p.textContent = '--'; p.style.color = ''; });
+      var totals = ['sw-total','gd-total','ve-total','cs-total'];
+      totals.forEach(function(id) { var el = document.getElementById(id); if(el){ el.textContent='--'; el.style.color='var(--accent)'; } });
     }
-    btn.disabled = false;
-    label.textContent = 'Submit';
   }
 </script>
 </body>
