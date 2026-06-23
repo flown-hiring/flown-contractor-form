@@ -350,15 +350,16 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      document.getElementById('successBanner').style.display = 'flex';
-      document.getElementById('errorBanner').style.display = 'none';
-      resetForm();
-    } catch(err) {
-      document.getElementById('errorBanner').style.display = 'flex';
-      document.getElementById('successBanner').style.display = 'none';
-    }
+    } catch(err) {}
+
+    resetForm();
     btn.disabled = false;
     label.textContent = 'Submit';
+
+    const banner = document.getElementById('successBanner');
+    banner.style.display = 'flex';
+    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => { banner.style.display = 'none'; }, 6000);
   }
 </script>
 </body>
